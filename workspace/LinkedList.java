@@ -17,8 +17,12 @@ Problem:  Write a program that keeps and manipulates a linked list of
 public class LinkedList{
 
   //instance varialbes go here (think about what you need to keep track of!)
+  ArrayList<ListNode> nodes;
 
   //constructors go here
+  public LinkedList(){
+    nodes = new ArrayList<ListNode>();
+  }
 
 
   //precondition: the list has been initialized
