@@ -14,14 +14,20 @@ Problem:  Write a program that keeps and manipulates a linked list of
 	Output:  the results to the screen of each menu
 	    choice, and error messages where appropriate.
 */
+
 public class LinkedList{
 
   //instance varialbes go here (think about what you need to keep track of!)
-  ArrayList<ListNode> nodes;
+  ListNode head;
 
   //constructors go here
+
   public LinkedList(){
-    nodes = new ArrayList<ListNode>();
+    head = null;
+  }
+
+  public LinkedList(ListNode head){
+    this.head = head;
   }
 
 
@@ -29,7 +35,21 @@ public class LinkedList{
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
-    return null;
+    ListNode temp = head;
+    ListNode node;
+
+    if (temp == null){
+      head = new ListNode(line, null);
+    }
+    else if (temp.getNext() == null){
+      if (line.compareTo(temp.getNext().getValue()) < 0){
+        head.setValue(line);
+        node = temp;
+      }
+    }
+
+    line.compareTo(temp.getNext().getValue())
+
   }
 
   //precondition: the list has been initialized
@@ -44,10 +64,24 @@ public class LinkedList{
   //postconditions: returns a string containing all values appended together with spaces between.
   public String showValues()
   {
-    return null;
+  
+    String vals = "";
+    ListNode node = head.getNext();
+
+    vals = vals + head.getValue() + " ";
+
+    while (node.getNext() != null){
+      vals = vals + node.getValue() + " ";
+      node = node.getNext();
+    }
+
+    return vals;
+    
+
   }
 
   //precondition: the list has been initialized
+  
   //postconditions: clears the list.
   public void clear()
   {
