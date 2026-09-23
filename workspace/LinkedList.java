@@ -36,19 +36,35 @@ public class LinkedList{
   public ListNode addAValue(String line)
   {
     ListNode temp = head;
-    ListNode node;
+    ListNode node = new ListNode (null, null);
 
     if (temp == null){
       head = new ListNode(line, null);
+      node = head;
     }
-    else if (temp.getNext() == null){
+    else if (head.getNext() == null){
       if (line.compareTo(temp.getNext().getValue()) < 0){
         head.setValue(line);
         node = temp;
       }
+      else{
+        node = new ListNode (line, null);
+        head.setNext(node);
+      }
+    }
+    
+    else{
+      while (line.compareTo(temp.getNext().getValue()) >= 0){
+        temp = temp.getNext();
+        if (line.compareTo(temp.getNext().getValue()) < 0){
+          node = new ListNode(line, temp.getNext());
+          temp.setNext(node);
+          return node;
+        }
+      }
     }
 
-    line.compareTo(temp.getNext().getValue())
+    return node;
 
   }
 
@@ -66,11 +82,9 @@ public class LinkedList{
   {
   
     String vals = "";
-    ListNode node = head.getNext();
+    ListNode node = head;
 
-    vals = vals + head.getValue() + " ";
-
-    while (node.getNext() != null){
+    while (node != null){
       vals = vals + node.getValue() + " ";
       node = node.getNext();
     }
