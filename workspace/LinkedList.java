@@ -40,31 +40,39 @@ public class LinkedList{
 
     if (temp == null){
       head = new ListNode(line, null);
-      node = head;
+      return head;
     }
-    else if (head.getNext() == null){
-      if (line.compareTo(temp.getNext().getValue()) < 0){
-        head.setValue(line);
-        node = temp;
-      }
-      else{
-        node = new ListNode (line, null);
-        head.setNext(node);
-      }
+    // else if (head.getNext() == null){
+    //   if (line.compareTo(temp.getNext().getValue()) < 0){
+    //     head.setValue(line);
+    //     node = temp;
+    //   }
+    //   else{
+    //     node = new ListNode (line, null);
+    //     head.setNext(node);
+    //   }
+    // }
+
+    else if (line.compareTo(head.getValue()) < 0){
+      node.setValue(head.getValue());
+      node.setNext(head.getNext());
+      head.setValue(line);
+      head.setNext(node);
+      return head;
     }
     
     else{
-      while (line.compareTo(temp.getNext().getValue()) >= 0){
+      while ( temp.getNext()!= null  && line.compareTo(temp.getNext().getValue()) >= 0){
         temp = temp.getNext();
-        if (line.compareTo(temp.getNext().getValue()) < 0){
-          node = new ListNode(line, temp.getNext());
-          temp.setNext(node);
-          return node;
-        }
       }
-    }
 
-    return node;
+      node.setValue(line);
+      node.setNext(temp.getNext());
+      temp.setNext(node);
+
+      return node;
+
+    }
 
   }
 
@@ -73,6 +81,24 @@ public class LinkedList{
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
   {
+
+    ListNode temp2 = null;
+    ListNode temp = head;
+
+    while (temp.getNext()!= null && !line.equals(temp.getValue())){
+      temp2 = temp;
+      temp = temp.getNext();
+    }
+
+    if (temp.getNext() == null){
+      return null;
+    }
+
+    else{
+      
+    }
+
+
     return null;
   }
 
@@ -99,6 +125,6 @@ public class LinkedList{
   //postconditions: clears the list.
   public void clear()
   {
-  
+    head = null;
   }
 }
