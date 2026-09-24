@@ -42,16 +42,6 @@ public class LinkedList{
       head = new ListNode(line, null);
       return head;
     }
-    // else if (head.getNext() == null){
-    //   if (line.compareTo(temp.getNext().getValue()) < 0){
-    //     head.setValue(line);
-    //     node = temp;
-    //   }
-    //   else{
-    //     node = new ListNode (line, null);
-    //     head.setNext(node);
-    //   }
-    // }
 
     else if (line.compareTo(head.getValue()) < 0){
       node.setValue(head.getValue());
@@ -82,24 +72,36 @@ public class LinkedList{
   public ListNode deleteAValue(String line)
   {
 
-    ListNode temp2 = null;
+
     ListNode temp = head;
+    ListNode temp2 = null;
 
-    while (temp.getNext()!= null && !line.equals(temp.getValue())){
-      temp2 = temp;
-      temp = temp.getNext();
+
+    if (line.equals(head.getValue())){
+      head = null;
+      return temp;
     }
-
-    if (temp.getNext() == null){
-      return null;
-    }
-
     else{
-      
+      while (temp.getNext()!= null && !line.equals(temp.getValue())){
+        temp2 = temp;
+        temp = temp.getNext();
+      }
+
+      if (temp.getNext() == null && !line.equals(temp.getValue())){
+        return temp;
+      }
+
+      else if (temp.getNext() == null){
+        temp2.setNext(null);
+      }
+
+      else{
+        temp2.setNext(temp.getNext());
+      }
     }
 
 
-    return null;
+    return temp2;
   }
 
   //precondition: the list has been initialized
