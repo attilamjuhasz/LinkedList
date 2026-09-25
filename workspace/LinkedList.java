@@ -129,4 +129,37 @@ public class LinkedList{
   {
     head = null;
   }
+
+  public void reverse(){
+    ListNode temp2 = head;
+    ListNode tail = new ListNode(null, null);
+    ListNode temp = head.getNext();
+
+    int i = 0;
+
+    while (temp.getNext().getNext() != null){
+      i++;
+      temp = temp.getNext();
+    }
+
+    tail = temp.getNext();
+
+    int k = 0;
+    while (k < i){
+      temp2 = temp2.getNext();
+      k++;
+    }
+
+    tail.getNext() = null;//just pausing
+
+    
+
+
+
+
+
+  }
+
+
+
 }
