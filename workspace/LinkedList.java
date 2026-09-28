@@ -130,30 +130,30 @@ public class LinkedList{
     head = null;
   }
 
-  public void reverse(){
-    ListNode temp2 = head;
-    ListNode tail = new ListNode(null, null);
-    ListNode temp = head.getNext();
+  public ListNode reverse(){
+    ListNode prev = head;
+    ListNode curr = prev.getNext();
+    ListNode next = curr.getNext();
 
-    int i = 0;
-
-    while (temp.getNext().getNext() != null){
-      i++;
-      temp = temp.getNext();
+    if (curr == null){
+      return prev;
     }
-
-    tail = temp.getNext();
-
-    int k = 0;
-    while (k < i){
-      temp2 = temp2.getNext();
-      k++;
+    else if (next == null){
+      curr.setNext(prev);
+      prev.setNext(null);
+      return curr;
     }
-
-    tail.getNext() = null;//just pausing
-
+    else{
+      while (next.getNext() != null){
+        curr.setNext(prev);
+        prev = curr;
+        curr = next;
+        next = next.getNext();
+      }
+      next.setNext(curr);
+    }
+    return next;
     
-
 
 
 
