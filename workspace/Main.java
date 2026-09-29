@@ -32,7 +32,7 @@ public class Main{
             list.clear();
           }
           else if(input.equals("reverse")){
-              list.reverse();
+              System.out.println(list.reverse());
           }
           else if(!input.equals("exit")){
               System.out.println("I don't know how to "+input);

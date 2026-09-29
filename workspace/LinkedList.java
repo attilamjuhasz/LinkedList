@@ -131,29 +131,21 @@ public class LinkedList{
   }
 
   public ListNode reverse(){
-    ListNode prev = head;
-    ListNode curr = prev.getNext();
-    ListNode next = curr.getNext();
-
-    if (curr == null){
-      return prev;
-    }
-    else if (next == null){
-      curr.setNext(prev);
-      prev.setNext(null);
-      return curr;
-    }
-    else{
-      while (next.getNext() != null){
-        curr.setNext(prev);
-        prev = curr;
-        curr = next;
-        next = next.getNext();
-      }
-      next.setNext(curr);
-    }
-    return next;
     
+    ListNode prev = null;
+    ListNode curr = head;
+    ListNode next = null;
+
+    while (curr != null){
+      prev = curr;
+      curr = next;
+      next = curr.getNext();
+      curr.setNext(prev);
+    }
+
+    head = curr;
+
+    return head;
 
 
 
@@ -163,3 +155,10 @@ public class LinkedList{
 
 
 }
+// add a
+// add b
+// add c
+// add d
+// add e
+// add f
+
