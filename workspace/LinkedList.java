@@ -1,3 +1,5 @@
+// Attila Juhasz | 9/29/2026 | This is a linkedlist, where there is a head and each node points to the next node. You can do many stuff, like adding, clearing, removing, showing, removing, etc.
+
 /*
 Problem:  Write a program that keeps and manipulates a linked list of
 	    String data. The data will be provided by the user one item at a time.
@@ -78,8 +80,8 @@ public class LinkedList{
 
 
     if (line.equals(head.getValue())){
-      head = null;
-      return temp;
+      head = head.getNext();
+      return head;
     }
     else{
       while (temp.getNext()!= null && !line.equals(temp.getValue())){
