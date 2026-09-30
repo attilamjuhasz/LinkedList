@@ -32,7 +32,7 @@ public class Main{
             list.clear();
           }
           else if(input.equals("reverse")){
-              System.out.println(list.reverse());
+              System.out.println(list.reverse(list).showValues());
           }
           else if(input.substring(0, 8).equals("nreverse")){
             int num = Integer.parseInt(input.substring(9));
@@ -46,5 +46,6 @@ public class Main{
  
         // Printing the read line
         System.out.println("thanks for playing!");
+        System.out.println((2+3)%3);
     }
 }

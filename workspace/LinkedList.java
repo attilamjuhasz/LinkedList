@@ -1,4 +1,4 @@
-// Attila Juhasz | 9/29/2026 | This is a linkedlist, where there is a head and each node points to the next node. You can do many stuff, like adding, clearing, removing, showing, removing, etc.
+// Attila Juhasz | 9/29/2026 | This is a linkedlist, where there is a head and each node points to the next node. You can do many things, like adding, clearing, removing, showing, removing, etc.
 
 /*
 Problem:  Write a program that keeps and manipulates a linked list of
@@ -138,14 +138,36 @@ public class LinkedList{
     this.head = head;
   }
 
-  public String reverse(){
+  // Precondition: linkedlist is defined and inputted head is also defined
+  // Postcondition: returns list's head
+  public ListNode getHead(){
+    return head;
+  }
+  // Precondition: linkedlist is defined and inputted node is also defined
+  // Postcondition: adds given node to the end of the list
+  public void addToEnd(LinkedList list, ListNode added){
+    ListNode node = list.getHead();
+
+    if (node != null){
+      while (node.getNext() != null){
+        node = node.getNext();
+      }
+
+      node.setNext(added);
+    }
+    else{
+      list.setHead(added);
+    }
+  }
+  // Precondition: list is defined and has a head
+  // Postcondition: reverses the list
+  public LinkedList reverse(LinkedList list){
     
     ListNode prev = null;
-    ListNode curr = head;
-    ListNode next = head.getNext();
+    ListNode curr = list.getHead();
+    ListNode next = list.getHead().getNext();
 
     while (curr != null){
-      // aSystem.out.println(curr.getValue());
       curr.setNext(prev);
       prev = curr;
       curr = next;
@@ -155,23 +177,102 @@ public class LinkedList{
     System.out.println("done reversing");
     head = prev;
 
-    return head.getValue();
+    return list;
   }
+  // Precondition: list is defined and has a head
+  // Postcondition: reverses the list in n sized chunks
+public String nReverse(LinkedList original, int n){
+  
+  LinkedList listOne = new LinkedList(head);
+  LinkedList listTwo = new LinkedList(head);
+  ListNode headOfNext = head;
+  ListNode tailOfCurrent = head;
+  int i = 0;
+  boolean donzo = false;
 
-  public String nReverse(LinkedList original, int n){
-    
-    LinkedList temp = new LinkedList(head);
-    LinkedList temp2 = new LinkedList(head);
-    ListNode node = head;
+  while (headOfNext != null && !donzo){
 
-    for (int i = n; i > 0; i--){
-      node = node.getNext();
+
+    int l = 0;
+    ListNode temp = headOfNext;
+    while (temp != null){
+      temp = temp.getNext();
+      l++;
     }
-    temp2.
-    System.out.println(node.getValue());
+    if (l < n){
+      n = l;
+    }
 
-    return "";
+    ListNode check = headOfNext;
+    int count = 0;
+
+    while (check != null && count < n){
+      check = check.getNext();
+      count++;
+    }
+
+    if (count < n){
+      if (i == 0){
+        original.clear();
+      }
+
+      original.addToEnd(original, headOfNext);
+      donzo = true;
+
+    }
+
+    else{
+      listOne.setHead(headOfNext);
+      tailOfCurrent = headOfNext;
+      int k = n;
+
+      while (k > 1){
+        tailOfCurrent = tailOfCurrent.getNext();
+        k--;
+      }
+
+      System.out.println("tailOfCurrent: " + tailOfCurrent.getValue());
+
+      int j = n;
+      while (j > 0){
+        headOfNext = headOfNext.getNext();
+        j--;
+      }
+
+      if (headOfNext == null){
+        donzo = true;
+      }
+
+      else{
+        System.out.println("headOfNext: " + headOfNext.getValue());
+      }
+
+      tailOfCurrent.setNext(null);
+
+
+      listTwo.setHead(headOfNext);
+
+      listOne = listOne.reverse(listOne);
+
+      if (i == 0){
+        original.clear();
+      }
+
+      original.addToEnd(original, listOne.getHead());
+
+      System.out.println(listOne.showValues());
+      tailOfCurrent = headOfNext;
+
+      i++;
+
   }
+
+  }
+
+  return original.showValues();
+
+}
+
 
 
 
