@@ -34,6 +34,10 @@ public class Main{
           else if(input.equals("reverse")){
               System.out.println(list.reverse());
           }
+          else if(input.substring(0, 8).equals("nreverse")){
+            int num = Integer.parseInt(input.substring(9));
+            System.out.println(list.nReverse(list, num));
+          }
           else if(!input.equals("exit")){
               System.out.println("I don't know how to "+input);
           }

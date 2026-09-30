@@ -132,26 +132,45 @@ public class LinkedList{
     head = null;
   }
 
-  public ListNode reverse(){
+  // Precondition: linkedlist is defined and inputted head is also defined
+  // Postcondition: sets list's head to new head
+  public void setHead(ListNode head){
+    this.head = head;
+  }
+
+  public String reverse(){
     
     ListNode prev = null;
     ListNode curr = head;
-    ListNode next = null;
+    ListNode next = head.getNext();
 
     while (curr != null){
+      // aSystem.out.println(curr.getValue());
+      curr.setNext(prev);
       prev = curr;
       curr = next;
-      next = curr.getNext();
-      curr.setNext(prev);
+      next = next==null ? null : next.getNext();
+      
     }
+    System.out.println("done reversing");
+    head = prev;
 
-    head = curr;
+    return head.getValue();
+  }
 
-    return head;
+  public String nReverse(LinkedList original, int n){
+    
+    LinkedList temp = new LinkedList(head);
+    LinkedList temp2 = new LinkedList(head);
+    ListNode node = head;
 
+    for (int i = n; i > 0; i--){
+      node = node.getNext();
+    }
+    temp2.
+    System.out.println(node.getValue());
 
-
-
+    return "";
   }
 
 
